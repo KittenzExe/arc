@@ -113,7 +113,10 @@ while menu == True:
         RPC.update(
             large_image="arc-logo",
             large_text="Browsing menu",
-            state="under development!"
+            details="Browsing menu",
+            state="under development!",
+            party_size=[1,100],
+            buttons=[{"label":"Track development here","url":"https://github.com/KittenzExe/arc"}]
             )
 
     
