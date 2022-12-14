@@ -8,3 +8,6 @@ Here are a few are a few things that are being worked on
 - [ ] Level select
 - [ ] Actual game (lmao)
 - [ ] Custom song loading
+
+README.md created on 14th of December 2022
+Project Started 10th of December 2022
