@@ -12,3 +12,13 @@ Here are a few are a few things that are being worked on
 README.md created on 14th of December 2022
 
 Project Started 10th of December 2022
+
+# Pre-requisites
+Required installs for editing:
+```
+pip install pygame
+pip install system
+pip install pypresence
+pip install time
+pip install firebase
+```
