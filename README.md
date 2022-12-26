@@ -17,4 +17,11 @@ pip install system
 pip install pypresence
 pip install time
 pip install firebase
+pip install auto-py-to-exe (for compiling)
+```
+
+# For converting to exe
+Run the following:
+```
+python -m auto_py_to_exe
 ```
