@@ -1,10 +1,19 @@
+#HOW TO EXPORT TO EXE
+#in vscode terminal, run:
+#   python -m auto_py_to_exe
+
 import pygame
 mainClock = pygame.time.Clock()
 import sys
 from pypresence import Presence
-import os
 import time
 from pygame.locals import *
+
+#firebase
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+
 #int game
 pygame.init()
 #change this if you want to die!
@@ -13,6 +22,10 @@ gameruntime = True #why tf does this exist
 menu = True
 lobby = False
 game  = False
+
+# Fetch the service account key JSON file contents
+cred = credentials.Certificate("arc-data-base-firebase-adminsdk-1vqh2-57729cc1ce.json")
+firebase_admin.initialize_app(cred)
 #main game loop for loading
 if gameLoop == 1:
     #other variables for nesting
@@ -26,7 +39,7 @@ if gameLoop == 1:
     #icon image load and display
     programIcon = pygame.image.load('resources\Arc-logo.png')
     pygame.display.set_icon(programIcon)
-    pygame.display.set_caption('Welcome to arc')
+    pygame.display.set_caption('arc')
 
     #window set
     window = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
@@ -70,6 +83,16 @@ def update_fps():
 	fps = str(int(mainClock.get_fps()))
 	fps_text = font.render(fps, 1, pygame.Color(0,0,0))
 	return fps_text
+
+hitNum = 0 #100, 200, 300
+comboNum = 0 #x multiplyer
+scoreCalc1 = hitNum * comboNum
+def scoreCalc():
+    print("test")
+
+#firebase check
+ref = db.reference('https://console.firebase.google.com/u/0/project/arc-data-base/database/arc-data-base-default-rtdb/data/~2F/Users')
+print(ref.get())
 
 while menu == True:
     #fps update
