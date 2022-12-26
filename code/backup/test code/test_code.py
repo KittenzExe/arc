@@ -1,38 +1,53 @@
-# importing required library
 import pygame
+import sys
 
-# activate the pygame library .
-pygame.init()
-X = 600
-Y = 600
 
-# create the display surface object
-# of specific dimension..e(X, Y).
-scrn = pygame.display.set_mode((X, Y))
+def main():
+    pygame.init()
+    clock = pygame.time.Clock()
+    fps = 60
+    size = [200, 200]
+    bg = [255, 255, 255]
 
-# set the pygame window name
-pygame.display.set_caption('image')
+    screen = pygame.display.set_mode(size)
 
-# create a surface object, image is drawn on it.
-imp = pygame.image.load("resources\what.png").convert()
+    button = pygame.Rect(90, 90, 50, 50)
+    button2 = pygame.Rect(9, 9, 50, 50)  # creates a rect object
+    # The rect method is similar to a list but with a few added perks
+    # for example if you want the position of the button you can simpy type
+    # button.x or button.y or if you want size you can type button.width or
+    # height. you can also get the top, left, right and bottom of an object
+    # with button.right, left, top, and bottom
 
-# Using blit to copy content from one surface to other
-scrn.blit(imp, (0, 0))
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
 
-# paint screen one time
-pygame.display.flip()
-status = True
-while (status):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = event.pos  # gets mouse position
 
-    # iterate over the list of Event objects
-    # that was returned by pygame.event.get() method.
-    for i in pygame.event.get():
+                # checks if mouse position is over the button
 
-        # if event object type is QUIT
-        # then quitting the pygame
-        # and program both.
-        if i.type == pygame.QUIT:
-            status = False
+                if button.collidepoint(mouse_pos):
+                    # prints current location of mouse
+                    print('button was pressed at {0}'.format(mouse_pos))
+                
+                if button2.collidepoint(mouse_pos):
+                    # prints current location of mouse
+                    print('button2 was pressed at {0}'.format(mouse_pos))
 
-# deactivates the pygame library
-pygame.quit()
+        screen.fill(bg)
+
+        pygame.draw.rect(screen, [255, 0, 0], button)
+        pygame.draw.rect(screen, [255, 0, 0], button2)  # draw button
+
+        pygame.display.update()
+        clock.tick(fps)
+
+    pygame.quit()
+    sys.exit
+
+
+if __name__ == '__main__':
+    main()
