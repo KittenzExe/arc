@@ -15,7 +15,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from firebase_admin import db
 
-cred = credentials.Certificate("arc-data-base-firebase-adminsdk-1vqh2-57729cc1ce.json")
+cred = credentials.Certificate("/Users/KittenzExe/Desktop/arc-data-base-firebase-adminsdk-1vqh2-57729cc1ce.json")
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
