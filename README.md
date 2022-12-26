@@ -1,7 +1,7 @@
 # arc
 making an online rhythm game in pygame... help
 
-If you try and download it now, it wont work. Firebase data is localy stored and not shared at the moment.
+If you try and download it now, it wont work. Firebase data is localy stored and not shared at the moment. (aka, its on my desktop lmfao)
 
 Very **very** work in progress (still learning pygame)
 
