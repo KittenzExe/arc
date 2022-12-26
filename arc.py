@@ -27,9 +27,9 @@ if gameLoop == 1:
     window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)#, pygame.FULLSCREEN | or in 1080, 720
     wx,wy = pygame.display.get_window_size()
 
-    uNameButton = pygame.Rect(100, 150, 200, 24)
-    pWordButton = pygame.Rect(100, 250, 200, 24)
-    dSubmitButton = pygame.Rect(10, 210, 20, 20)
+    uNameButton = pygame.Rect(30, 5, 200, 24)
+    pWordButton = pygame.Rect(30, 34, 200, 24)
+    dSubmitButton = pygame.Rect(5, 5, 20, 53)
 
     font = pygame.font.SysFont("arialrounded", 20)#, bold = pygame.font.Font.bold
 
@@ -238,16 +238,16 @@ while True:
 
     if loginShow == True:
         pygame.draw.rect(window, [255, 0, 0], uNameButton)
-        window.blit(text_U, (100, 150))
+        window.blit(text_U, (30, 5))
 
         pygame.draw.rect(window, [255, 0, 0], pWordButton)
-        window.blit(text_P, (100, 250))
+        window.blit(text_P, (30, 34))
 
         pygame.draw.rect(window, [255, 0, 0], dSubmitButton)
 
         if uT == True:
-                window.blit(tempU, (100, 150))
+                window.blit(tempU, (30, 5))
         if pT == True:
-            window.blit(tempP, (100, 250))
+            window.blit(tempP, (30, 34))
 
     pygame.display.flip()
