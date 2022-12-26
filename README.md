@@ -1,5 +1,5 @@
 # arc
-making an online rhythm game in pygame... help
+making an online rhythm game in pygame (Current uploaded version: V0.2.6(Spindal)
 
 If you try and download it now, it wont work. Firebase data is localy stored and not shared at the moment. (aka, its on my desktop lmfao)
 
