@@ -1,5 +1,9 @@
 # arc
-## Making an online rhythm game in pygame... help
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/67358250/209617483-492d755e-1316-428c-8266-a15dbd77349d.png" width="200">
+</p>
+
+### Making an online rhythm game in pygame
 Developed by KittenzExe
 
 # Information (Please read)
