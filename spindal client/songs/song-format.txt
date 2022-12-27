@@ -1,4 +1,0 @@
-file name
-| song.wav
-| mapdtls.txt
-| song.arc
