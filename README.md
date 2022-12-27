@@ -1,6 +1,6 @@
 # arc (spindal beta client)
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/67358250/209617483-492d755e-1316-428c-8266-a15dbd77349d.png" width="200">
+  <img src="https://user-images.githubusercontent.com/67358250/209692948-f6511791-204a-4706-a28c-284d295f713f.png" width="200">
 </p>
 
 ### Making an online rhythm game in pygame
