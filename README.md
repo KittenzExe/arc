@@ -1,15 +1,21 @@
 # arc
-making an online rhythm game in pygame (Current uploaded version: V0.2.6(Spindal)
+## Making an online rhythm game in pygame... help
+Developed by KittenzExe
 
-If you try and download it now, it wont work. Firebase data is localy stored and not shared at the moment. (aka, its on my desktop lmfao)
+# Information (Please read)
+If you try and download it now, it wont work. Firebase data is localy stored and not shared at the moment. (aka, its on my desktop for security reasons)
 
-Very **very** work in progress (still learning pygame)
+Very **very** work in progress
 
-README.md created on 14th of December 2022
+# Versions:
+- Release: V0.1.1
+- Spindal: V0.2.6
+- (Currently Matching)
 
-Project Started 10th of December 2022
+# Frequently Asked Questions:
+## Soon tm
 
-# Pre-requisites
+# Pre-requisites for editing:
 Required installs for editing:
 ```
 pip install pygame
@@ -20,8 +26,12 @@ pip install firebase
 pip install auto-py-to-exe (for compiling)
 ```
 
-# For converting to exe
+## For converting to exe
 Run the following:
 ```
 python -m auto_py_to_exe
 ```
+
+README.md created on 14th of December 2022
+
+Project Started 10th of December 2022
