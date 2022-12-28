@@ -27,9 +27,13 @@ if gameLoop == 1:
     window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)#, pygame.FULLSCREEN | or in 1080, 720
     wx,wy = pygame.display.get_window_size()
 
+    logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
+    logoH = pygame.transform.scale(logoH, (500, 500))
+
     uNameButton = pygame.Rect(63, 5, 200, 24)
     pWordButton = pygame.Rect(63, 34, 200, 24)
     dSubmitButton = pygame.Rect(5, 5, 53, 53)
+    logoButton = pygame.Rect(((wx/2)-250), ((wy/2)-250), 500, 500)
 
     font = pygame.font.SysFont("arialrounded", 20)#, bold = pygame.font.Font.bold
 
@@ -73,6 +77,9 @@ logONP = False
 while True:
     mainClock.tick(500)
     window.fill((255,255,255))
+
+    window.blit(logoH, (((wx/2)-250), ((wy/2)-250)))
+
     #fps update
     if fpsON == 1:
             bar = (241, 241, 255)
@@ -147,94 +154,99 @@ while True:
                     
                     if dSubmitButton.collidepoint(mouse_pos):
                         # prints current location of mouse
-                        print('button2 was pressed at {0}'.format(mouse_pos))
+                        print('button3 was pressed at {0}'.format(mouse_pos))
                         tInputU = False
                         tInputP = False
                         dSubmit = True
                         print(tInputU)
                         print(tInputP)
                         print(dSubmit)
+                    
+                    if logoButton.collidepoint(mouse_pos):
+                        # prints current location of mouse
+                        print('logo was pressed at {0}'.format(mouse_pos))
+                        print("logo clicked!")
         
-        if tInputU == True:
-            if event.type == pygame.KEYDOWN:
-                logOnU = True
-                if event.key == pygame.K_BACKSPACE:
-                    text_value_U = text_value_U[:-1]
+            if tInputU == True:
+                if event.type == pygame.KEYDOWN:
+                    logOnU = True
+                    if event.key == pygame.K_BACKSPACE:
+                        text_value_U = text_value_U[:-1]
+                        text_U = font.render(text_value_U, True, (0, 0, 0))
+                    if event.key == pygame.K_RETURN:
+                        print(text_value_U)
+                if event.type == pygame.TEXTINPUT:
+                    text_value_U += event.text
                     text_U = font.render(text_value_U, True, (0, 0, 0))
-                if event.key == pygame.K_RETURN:
-                    print(text_value_U)
-            if event.type == pygame.TEXTINPUT:
-                text_value_U += event.text
-                text_U = font.render(text_value_U, True, (0, 0, 0))
 
-        if tInputP == True:
-            if event.type == pygame.KEYDOWN:
-                logOnP = True
-                if event.key == pygame.K_BACKSPACE:
-                    text_value_P = text_value_P[:-1]
+            if tInputP == True:
+                if event.type == pygame.KEYDOWN:
+                    logOnP = True
+                    if event.key == pygame.K_BACKSPACE:
+                        text_value_P = text_value_P[:-1]
+                        text_P = font.render(text_value_P, True, (0, 0, 0))
+                    if event.key == pygame.K_RETURN:
+                        print(text_value_P)
+                if event.type == pygame.TEXTINPUT:
+                    text_value_P += event.text
                     text_P = font.render(text_value_P, True, (0, 0, 0))
-                if event.key == pygame.K_RETURN:
-                    print(text_value_P)
-            if event.type == pygame.TEXTINPUT:
-                text_value_P += event.text
-                text_P = font.render(text_value_P, True, (0, 0, 0))
-        
-        if dSubmit == True:
-            #Username Handler
-            doc_ref1 = db.collection(u'spindal users').document(u''+text_value_U)
-            doc1 = doc_ref1.get()
-            entered += 1
-            print(entered)
-            if doc1.exists:
-                doc_ref1.set({
-                    u'3-uName': text_value_U,
-                    u'2-curveConnected': 0,
-                    u'1-sessionID': res,
-                }, merge=True)
-            else:
-                print(u'No such document!')
             
-            #Password Handler
-            message_bytes_P = text_value_P.encode('ascii')
-            base64_bytes = base64.b64encode(message_bytes_P)
-            base64_message_p = base64_bytes.decode('ascii')
-            doc_ref1 = db.collection(u'spindal users').document(u''+text_value_U)
-            doc1 = doc_ref1.get()
-            entered += 1
-            print(entered)
-            if doc1.exists:
-                doc_ref1.set({
-                    u'4-pWord': base64_message_p,
-                }, merge=True)
-            else:
-                print(u'No such document!')
-            
-            #Verif. Handler
-            print("Data Sent! Awaiting Verification of client...")
-            datab = firestore.client()
-            docu = text_value_U
-            doc_ref2 = datab.collection(u'spindal users').document(u''+text_value_U)
-            doc2 = doc_ref2.get()
-            #Weird delay between sending and recieving...
-            if doc2.exists:
-                print(f'Document data: {doc2.to_dict()}')
-                sIDCALL = (f"{doc2.to_dict()}")
-                verif = str(sIDCALL[17:24])
-                print(verif)
-                if verif == res:
-                    print("verified!")
-                    print("have fun playing!")
-                    loginShow = False
-                    login = 2
+            if dSubmit == True:
+                #Username Handler
+                doc_ref1 = db.collection(u'spindal users').document(u''+text_value_U)
+                doc1 = doc_ref1.get()
+                entered += 1
+                print(entered)
+                if doc1.exists:
                     doc_ref1.set({
-                    u'2-curveConnected': 1
-                }, merge=True)
+                        u'3-uName': text_value_U,
+                        u'2-curveConnected': 0,
+                        u'1-sessionID': res,
+                    }, merge=True)
                 else:
-                    print("verification failed. please restart")
-                #Finish submit loop
-                dSubmit = False
-            else:
-                print(u'No such document!')
+                    print(u'No such document!')
+                
+                #Password Handler
+                message_bytes_P = text_value_P.encode('ascii')
+                base64_bytes = base64.b64encode(message_bytes_P)
+                base64_message_p = base64_bytes.decode('ascii')
+                doc_ref1 = db.collection(u'spindal users').document(u''+text_value_U)
+                doc1 = doc_ref1.get()
+                entered += 1
+                print(entered)
+                if doc1.exists:
+                    doc_ref1.set({
+                        u'4-pWord': base64_message_p,
+                    }, merge=True)
+                else:
+                    print(u'No such document!')
+                
+                #Verif. Handler
+                print("Data Sent! Awaiting Verification of client...")
+                datab = firestore.client()
+                docu = text_value_U
+                doc_ref2 = datab.collection(u'spindal users').document(u''+text_value_U)
+                doc2 = doc_ref2.get()
+                #Weird delay between sending and recieving...
+                if doc2.exists:
+                    print(f'Document data: {doc2.to_dict()}')
+                    sIDCALL = (f"{doc2.to_dict()}")
+                    verif = str(sIDCALL[17:24])
+                    print(verif)
+                    if verif == res:
+                        print("verified!")
+                        print("have fun playing!")
+                        loginShow = False
+                        login = 2
+                        doc_ref1.set({
+                        u'2-curveConnected': 1
+                    }, merge=True)
+                    else:
+                        print("verification failed. please restart")
+                    #Finish submit loop
+                    dSubmit = False
+                else:
+                    print(u'No such document!')
 
     if loginShow == True:
         pygame.draw.rect(window, [255, 0, 0], uNameButton)
