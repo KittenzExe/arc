@@ -30,6 +30,13 @@ if gameLoop == 1:
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
     logoH = pygame.transform.scale(logoH, (500, 500))
 
+    rndBG = 0
+    rndBG = random.randint(1 , 2)
+    randBG = str(rndBG)
+    homeBG = pygame.image.load("songs/"+ randBG+"/background.png")
+    homeBG = pygame.transform.scale(homeBG, (wx, wy))
+
+
     uNameButton = pygame.Rect(63, 5, 200, 24)
     pWordButton = pygame.Rect(63, 34, 200, 24)
     dSubmitButton = pygame.Rect(5, 5, 53, 53)
@@ -74,15 +81,17 @@ entered = 0
 logONU = False
 logONP = False
 
+print(randBG)
+window.blit(homeBG, (0,0))
+
 while True:
     mainClock.tick(500)
-    window.fill((255,255,255))
 
     window.blit(logoH, (((wx/2)-250), ((wy/2)-250)))
 
     #fps update
     if fpsON == 1:
-            bar = (241, 241, 255)
+            bar = (124, 124, 124)
             bar1 = pygame.Rect(0, 0, wx, 70)
             pygame.draw.rect(window, bar, bar1)
             newFPS = int(mainClock.get_fps())
@@ -92,8 +101,8 @@ while True:
             fpsY = (255,255,0)
             fpsL = (165,255,0)
             fpsG = (0,255,0)
-            fpsBox = pygame.Rect((wx - 85) , (wy - 30), 80, 25)
-            rawtimeBox = pygame.Rect((wx - 70) , (wy - 56), 50, 23)
+            fpsBox = pygame.Rect((wx - 85) , (wy - 30), 100, 25)
+            rawtimeBox = pygame.Rect((wx - 70) , (wy - 56), 100, 23)
             if newFPS >= 15:
                 pygame.draw.rect(window, fpsR, fpsBox)
             if newFPS >= 30:

@@ -27,6 +27,7 @@ pip install system
 pip install pypresence
 pip install time
 pip install firebase
+pip install Pillow
 pip install auto-py-to-exe (for compiling)
 ```
 
