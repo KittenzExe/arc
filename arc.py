@@ -19,7 +19,7 @@ cred = credentials.Certificate("/Users/KittenzExe/Desktop/arc-data-base-firebase
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-#Hello World!
+#Hello World!!
 pygame.init()
 
 gameLoop = 1
