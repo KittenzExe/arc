@@ -258,13 +258,13 @@ while True:
                     print(u'No such document!')
 
     if loginShow == True:
-        pygame.draw.rect(window, [255, 0, 0], uNameButton)
+        pygame.draw.rect(window, [240, 240, 240], uNameButton)
         window.blit(text_U, (68, 5))
 
-        pygame.draw.rect(window, [255, 0, 0], pWordButton)
+        pygame.draw.rect(window, [240, 240, 240], pWordButton)
         window.blit(text_P, (68, 34))
 
-        pygame.draw.rect(window, [255, 0, 0], dSubmitButton)
+        pygame.draw.rect(window, [240, 240, 240], dSubmitButton)
 
         if uT == True:
                 window.blit(tempU, (68, 5))
