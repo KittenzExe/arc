@@ -24,7 +24,7 @@ pygame.init()
 
 gameLoop = 1
 if gameLoop == 1:
-    window = pygame.display.set_mode((1080,720))#, pygame.FULLSCREEN | or in 1080, 720
+    window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)#, pygame.FULLSCREEN | or in 1080, 720
     wx,wy = pygame.display.get_window_size()
 
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
@@ -89,7 +89,7 @@ print(randBG)
 window.blit(homeBG, (0,0))
 
 while True:
-    mainClock.tick(500)
+    mainClock.tick(999)
 
     window.blit(logoH, (((wx/2)-250), ((wy/2)-250)))
     bar = (124, 124, 124)
@@ -277,7 +277,7 @@ while True:
         pygame.draw.rect(window, [240, 240, 240], dSubmitButton)
 
         if uT == True:
-                window.blit(tempU, (68, 5))
+            window.blit(tempU, (68, 5))
         if pT == True:
             window.blit(tempP, (68, 34))
     
