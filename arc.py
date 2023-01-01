@@ -24,7 +24,7 @@ pygame.init()
 
 gameLoop = 1
 if gameLoop == 1:
-    window = pygame.display.set_mode((1080,720))#, pygame.FULLSCREEN | or in 1080, 720
+    window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)#, pygame.FULLSCREEN | or in 1080, 720
     wx,wy = pygame.display.get_window_size()
 
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
@@ -183,29 +183,29 @@ while True:
                     menu = 1
                     login = 0
     
-    if tInputU == True:
-        if event.type == pygame.KEYDOWN:
-            logOnU = True
-            if event.key == pygame.K_BACKSPACE:
-                text_value_U = text_value_U[:-1]
+        if tInputU == True:
+            if event.type == pygame.KEYDOWN:
+                logOnU = True
+                if event.key == pygame.K_BACKSPACE:
+                    text_value_U = text_value_U[:-1]
+                    text_U = font.render(text_value_U, True, (0, 0, 0))
+                if event.key == pygame.K_RETURN:
+                    print(text_value_U)
+            if event.type == pygame.TEXTINPUT:
+                text_value_U += event.text
                 text_U = font.render(text_value_U, True, (0, 0, 0))
-            if event.key == pygame.K_RETURN:
-                print(text_value_U)
-        if event.type == pygame.TEXTINPUT:
-            text_value_U += event.text
-            text_U = font.render(text_value_U, True, (0, 0, 0))
 
-    if tInputP == True:
-        if event.type == pygame.KEYDOWN:
-            logOnP = True
-            if event.key == pygame.K_BACKSPACE:
-                text_value_P = text_value_P[:-1]
+        if tInputP == True:
+            if event.type == pygame.KEYDOWN:
+                logOnP = True
+                if event.key == pygame.K_BACKSPACE:
+                    text_value_P = text_value_P[:-1]
+                    text_P = font.render(text_value_P, True, (0, 0, 0))
+                if event.key == pygame.K_RETURN:
+                    print(text_value_P)
+            if event.type == pygame.TEXTINPUT:
+                text_value_P += event.text
                 text_P = font.render(text_value_P, True, (0, 0, 0))
-            if event.key == pygame.K_RETURN:
-                print(text_value_P)
-        if event.type == pygame.TEXTINPUT:
-            text_value_P += event.text
-            text_P = font.render(text_value_P, True, (0, 0, 0))
     
     if dSubmit == True:
         #Username Handler
@@ -284,13 +284,13 @@ while True:
             if pT == True:
                 window.blit(tempP, (68, 34))
         
-        if loginShow == False:
-            uNamePrint = font.render(uName, True, (155, 224, 241))
-            uScorePrint = font.render('Score: '+uScore, True, (252, 218, 156))
-            uPPPrint = font.render('PP: '+uPP, True, (162, 172, 235))
-            window.blit(uNamePrint, (5, 5))
-            window.blit(uScorePrint, (5, 25))
-            window.blit(uPPPrint, (5, 45))
+    if loginShow == False:
+        uNamePrint = font.render(uName, True, (155, 224, 241))
+        uScorePrint = font.render('Score: '+uScore, True, (252, 218, 156))
+        uPPPrint = font.render('PP: '+uPP, True, (162, 172, 235))
+        window.blit(uNamePrint, (5, 5))
+        window.blit(uScorePrint, (5, 25))
+        window.blit(uPPPrint, (5, 45))
     
 
     if menu == 1:
