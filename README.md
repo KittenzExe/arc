@@ -1,4 +1,4 @@
-# arc
+# arc (spindal beta)
 <p align="center">
   <img src="https://user-images.githubusercontent.com/67358250/209617483-492d755e-1316-428c-8266-a15dbd77349d.png" width="200">
   <img src="https://user-images.githubusercontent.com/67358250/209694789-06e0070a-8083-4e2a-8cf7-88f75aa2563b.png" width="100">
