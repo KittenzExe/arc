@@ -145,6 +145,11 @@ while True:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
+        if event.type == KEYDOWN:
+            if event.key == K_BACKSPACE:
+                login = 1
+                menu = 0
+                flashBG = 1
         if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos  # gets mouse position
                 if uNameButton.collidepoint(mouse_pos):
