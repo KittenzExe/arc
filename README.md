@@ -1,7 +1,6 @@
 # arc
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/67358250/210171217-0bf31d83-c842-454f-ae40-55095832ecf4.png
-" width="200">
+  <img src="https://user-images.githubusercontent.com/67358250/210171217-0bf31d83-c842-454f-ae40-55095832ecf4.png" width="200">
 </p>
 
 ### Making an online rhythm game in pygame
