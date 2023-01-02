@@ -11,6 +11,8 @@ If you try and download it now, it wont work. Firebase data is localy stored and
 
 Very **very** work in progress
 
+(Contact me at: contact.arc@kittenzexe.com)
+
 # Versions:
 - Release: V0.1.1
 - Spindal: V0.2.6
