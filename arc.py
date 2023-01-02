@@ -4,6 +4,7 @@ from pypresence import Presence
 import time
 from pygame.locals import *
 from datetime import datetime
+import os
 import base64
 import string
 import random
@@ -28,10 +29,8 @@ if gamePreRender == 1:
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
     logoH = pygame.transform.scale(logoH, (500, 500))
 
-    rndBG = 0
-    rndBG = random.randint(1 , 2)
-    randBG = str(rndBG)
-    homeBG = pygame.image.load("songs/"+ randBG+"/background.png")
+    randomBG = random.choice(os.listdir("songs"))
+    homeBG = pygame.image.load("songs/"+ randomBG+"/background.png")
     homeBG = pygame.transform.scale(homeBG, (wx, wy))
 
     uNameButton = pygame.Rect(63, 5, 200, 24)
@@ -58,7 +57,7 @@ if gamePreRender == 1:
     res = ''.join(random.choices(string.ascii_uppercase + string.digits, k=stringRand))
     print("Session ID: " + str(res))
 
-    print(randBG)
+    print(randomBG)
     flashBG = 1
 
     clientLogged = 0
@@ -75,6 +74,13 @@ def update_rawtime():
     rawtime = str(int(mainClock.get_rawtime()))
     rawtime_text = font.render(rawtime + " ms", 1, pygame.Color(0,0,0))
     return rawtime_text
+
+files = folders = 0
+for _, dirnames, filenames in os.walk('songs'):
+  # ^ this idiom means "we won't be using this value"
+    files += len(filenames)
+    folders += len(dirnames)
+print ("{:,} files, {:,} folders".format(files, folders))
 
 tInputU = False
 tInputP = False
