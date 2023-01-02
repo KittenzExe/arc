@@ -13,6 +13,7 @@ from firebase_admin import firestore
 from firebase_admin import db
 
 mainClock = pygame.time.Clock()
+clientClock = pygame.time.Clock()
 pygame.init()
 
 cred = credentials.Certificate("/Users/KittenzExe/Desktop/arc-data-base-firebase-adminsdk-1vqh2-fc3c1d97fb.json")
@@ -50,7 +51,6 @@ if gamePreRender == 1:
     tempP = font.render(passwordTemp, True, (0, 0, 0))
     uT = True
     pT = True
-    entered = 0
     logONU = False
     logONP = False
 
@@ -60,6 +60,8 @@ if gamePreRender == 1:
 
     print(randBG)
     flashBG = 1
+
+    clientLogged = 0
 
     gameRender = 1
 
@@ -88,20 +90,45 @@ uPP = ''
 #main loop starts here
 while True:
     mainClock.tick(999) #fps cap
-
-    if flashBG == 1: #stops using all the fps
-        window.blit(homeBG, (0,0))
-        time.sleep(0.0000001)
-        flashBG = 0
     
     for event in pygame.event.get():
         if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == KEYDOWN:
-            if event.key == K_ESCAPE:
+            if clientLogged == 1:
+                print("logged out")
+                doc_log = db.collection(u'spindal users').document(u''+text_value_U)
+                doc_logout = doc_log.get()
+                if doc1.exists:
+                    doc_ref1.set({
+                        u'2-curveConnected': 0,
+                    }, merge=True)
+                    pygame.quit()
+                    sys.exit()
+                else:
+                    print("not logged")
+                    pygame.quit()
+                    sys.exit()
+            else:
                 pygame.quit()
                 sys.exit()
+        if event.type == KEYDOWN:
+            if event.key == K_ESCAPE:
+                if clientLogged == 1:
+                    print("logged out")
+                    doc_log = db.collection(u'spindal users').document(u''+text_value_U)
+                    doc_logout = doc_log.get()
+                    if doc1.exists:
+                        doc_ref1.set({
+                            u'2-curveConnected': 0,
+                        }, merge=True)
+                        pygame.quit()
+                        sys.exit()
+                    else:
+                        print("not logged")
+                        pygame.quit()
+                        sys.exit()
+                else:
+                    pygame.quit()
+                    sys.exit()
         if event.type == KEYDOWN:
             if event.key == K_BACKSPACE:
                 login = 1
@@ -115,9 +142,6 @@ while True:
                     tInputU = True
                     tInputP = False
                     dSubmit = False
-                    print(tInputU)
-                    print(tInputP)
-                    print(dSubmit)
                     uT = False
                 if pWordButton.collidepoint(mouse_pos):
                     # prints current location of mouse
@@ -125,9 +149,6 @@ while True:
                     tInputU = False
                     tInputP = True
                     dSubmit = False
-                    print(tInputU)
-                    print(tInputP)
-                    print(dSubmit)
                     pT = False
                 if dSubmitButton.collidepoint(mouse_pos):
                     # prints current location of mouse
@@ -135,13 +156,9 @@ while True:
                     tInputU = False
                     tInputP = False
                     dSubmit = True
-                    print(tInputU)
-                    print(tInputP)
-                    print(dSubmit)
                 if logoButton.collidepoint(mouse_pos):
                     # prints current location of mouse
                     print('logo was pressed at {0}'.format(mouse_pos))
-                    print("logo clicked!")
                     menu = 1
                     login = 0
 
@@ -151,8 +168,6 @@ while True:
                 if event.key == pygame.K_BACKSPACE:
                     text_value_U = text_value_U[:-1]
                     text_U = font.render(text_value_U, True, (0, 0, 0))
-                if event.key == pygame.K_RETURN:
-                    print(text_value_U)
             if event.type == pygame.TEXTINPUT:
                 text_value_U += event.text
                 text_U = font.render(text_value_U, True, (0, 0, 0))
@@ -163,8 +178,6 @@ while True:
                 if event.key == pygame.K_BACKSPACE:
                     text_value_P = text_value_P[:-1]
                     text_P = font.render(text_value_P, True, (0, 0, 0))
-                if event.key == pygame.K_RETURN:
-                    print(text_value_P)
             if event.type == pygame.TEXTINPUT:
                 text_value_P += event.text
                 text_P = font.render(text_value_P, True, (0, 0, 0))
@@ -173,74 +186,65 @@ while True:
             #Username Handler
             doc_ref1 = db.collection(u'spindal users').document(u''+text_value_U)
             doc1 = doc_ref1.get()
-            entered += 1
-            print(entered)
             if doc1.exists:
                 doc_ref1.set({
-                    u'3-uName': text_value_U,
-                    u'2-curveConnected': 0,
                     u'1-sessionID': res,
                 }, merge=True)
-            else:
-                print(u'No such document!')
-            
-            #Password Handler
-            message_bytes_P = text_value_P.encode('ascii')
-            base64_bytes = base64.b64encode(message_bytes_P)
-            base64_message_p = base64_bytes.decode('ascii')
-            doc_ref1 = db.collection(u'spindal users').document(u''+text_value_U)
-            doc1 = doc_ref1.get()
-            entered += 1
-            print(entered)
-            if doc1.exists:
-                doc_ref1.set({
-                    u'4-pWord': base64_message_p,
-                }, merge=True)
-            else:
-                print(u'No such document!')
-            
-            #Verif. Handler
-            print("Data Sent! Awaiting Verification of client...")
-            datab = firestore.client()
-            docu = text_value_U
-            doc_ref2 = datab.collection(u'spindal users').document(u''+text_value_U)
-            doc2 = doc_ref2.get()
-            #Weird delay between sending and recieving...
-            if doc2.exists:
-                print(f'Document data: {doc2.to_dict()}')
-                sIDCALL = (f"{doc2.to_dict()}")
-                verif = str(doc2.to_dict()['1-sessionID'])
-                print(verif)
-                if verif == res:
-                    print("verified!")
-                    print("have fun playing!")
-                    loginShow = False
-                    login = 2
-                    doc_ref1.set({
-                    u'2-curveConnected': 1
-                }, merge=True)
-                else:
-                    print("verification failed. please restart")
-                
-                uName = str(doc2.to_dict()['3-uName'])
-                uScore = str(doc2.to_dict()['5-score'])
-                uPP = str(doc2.to_dict()['6-pp'])
-                print(uName+" , "+uScore+" , "+uPP)
+                #Password Handler
+                message_bytes_P = text_value_P.encode('ascii')
+                base64_bytes = base64.b64encode(message_bytes_P)
+                base64_message_p = base64_bytes.decode('ascii')
+                pwordverif = str(doc1.to_dict()['4-pWord'])
+                doc_verif = db.collection(u'spindal users').document(u''+text_value_U)
+                doc_verify = doc_verif.get()
+                verif = str(doc_verify.to_dict()['1-sessionID'])
+                if pwordverif == base64_message_p:
+                    #Verif. Handler
+                    print("Data Sent! Awaiting Verification of client...")
+                    if res == verif:
+                        print(verif)
+                        print(res)
+                        print("verified!")
+                        loginShow = False
+                        login = 2
+                        doc_ref1.set({
+                        u'2-curveConnected': 1
+                    }, merge=True)
+                    else:
+                        print("verification failed. please restart")
+                    
+                    uName = str(doc1.to_dict()['3-uName'])
+                    uScore = str(doc1.to_dict()['5-score'])
+                    uPP = str(doc1.to_dict()['6-pp'])
+                    print(uName+" , "+uScore+" , "+uPP)
 
-                #Finish submit loop
-                dSubmit = False
+                    clientLogged = 1
+
+                    #Finish submit loop
+                    dSubmit = False
+                else:
+                    print(u'Not a valid username or password')
             else:
-                print(u'No such document!')
+                print(u'Not a valid username or password')
     
     if menu == 1:
         window.fill((240,240,240))
     
     if gameRender == 1:
         #Render order is first at the bottom, last is at the top
+
+        if flashBG == 1: #stops using all the fps
+            window.blit(homeBG, (0,0))
+            time.sleep(0.0000001)
+            flashBG = 0
+
         window.blit(logoH, (((wx/2)-250), ((wy/2)-250)))
         bar = (124, 124, 124)
         bar1 = pygame.Rect(0, 0, wx, 70)
         pygame.draw.rect(window, bar, bar1)
+
+        if menu == 1:
+            window.fill((240,240,240))
 
         if login == 1:
             if loginShow == True:
@@ -257,45 +261,46 @@ while True:
                 if pT == True:
                     window.blit(tempP, (68, 34))
             
-            if loginShow == False:
-                uNamePrint = font.render(uName, True, (155, 224, 241))
-                uScorePrint = font.render('Score: '+uScore, True, (252, 218, 156))
-                uPPPrint = font.render('PP: '+uPP, True, (162, 172, 235))
-                window.blit(uNamePrint, (5, 5))
-                window.blit(uScorePrint, (5, 25))
-                window.blit(uPPPrint, (5, 45))
+        if loginShow == False:
+            pygame.draw.rect(window, bar, bar1)
+            uNamePrint = font.render(uName, True, (155, 224, 241))
+            uScorePrint = font.render('Score: '+uScore, True, (252, 218, 156))
+            uPPPrint = font.render('PP: '+uPP, True, (162, 172, 235))
+            window.blit(uNamePrint, (5, 5))
+            window.blit(uScorePrint, (5, 25))
+            window.blit(uPPPrint, (5, 45))
             
-            if fpsON == 1:
-                newFPS = int(mainClock.get_fps())
-                rawTime = int(mainClock.get_rawtime())
-                fpsR = (255,0,0)
-                fpsO = (255,165,0)
-                fpsY = (255,255,0)
-                fpsL = (165,255,0)
-                fpsG = (0,255,0)
-                fpsBox = pygame.Rect((wx - 85) , (wy - 30), 100, 25)
-                rawtimeBox = pygame.Rect((wx - 70) , (wy - 56), 100, 23)
-                if newFPS >= 15:
-                    pygame.draw.rect(window, fpsR, fpsBox)
-                if newFPS >= 30:
-                    pygame.draw.rect(window, fpsO, fpsBox)
-                if newFPS >= 60:
-                    pygame.draw.rect(window, fpsY, fpsBox)
-                if newFPS >= 120:
-                    pygame.draw.rect(window, fpsL, fpsBox)
-                if newFPS >= 180:
-                    pygame.draw.rect(window, fpsG, fpsBox)
-                if rawTime <= 5:
-                    pygame.draw.rect(window, fpsR, rawtimeBox)
-                if rawTime == 4:
-                    pygame.draw.rect(window, fpsO, rawtimeBox)
-                if rawTime == 3:
-                    pygame.draw.rect(window, fpsY, rawtimeBox)
-                if rawTime == 2:
-                    pygame.draw.rect(window, fpsL, rawtimeBox)
-                if rawTime == 1:
-                    pygame.draw.rect(window, fpsG, rawtimeBox)
-                window.blit(update_fps(), ((wx - 80),(wy - 31)))
-                window.blit(update_rawtime(), ((wx - 69),(wy - 56)))
+        if fpsON == 1:
+            newFPS = int(mainClock.get_fps())
+            rawTime = int(mainClock.get_rawtime())
+            fpsR = (255,0,0)
+            fpsO = (255,165,0)
+            fpsY = (255,255,0)
+            fpsL = (165,255,0)
+            fpsG = (0,255,0)
+            fpsBox = pygame.Rect((wx - 85) , (wy - 30), 100, 25)
+            rawtimeBox = pygame.Rect((wx - 70) , (wy - 56), 100, 23)
+            if newFPS >= 15:
+                pygame.draw.rect(window, fpsR, fpsBox)
+            if newFPS >= 30:
+                pygame.draw.rect(window, fpsO, fpsBox)
+            if newFPS >= 60:
+                pygame.draw.rect(window, fpsY, fpsBox)
+            if newFPS >= 120:
+                pygame.draw.rect(window, fpsL, fpsBox)
+            if newFPS >= 180:
+                pygame.draw.rect(window, fpsG, fpsBox)
+            if rawTime <= 5:
+                pygame.draw.rect(window, fpsR, rawtimeBox)
+            if rawTime == 4:
+                pygame.draw.rect(window, fpsO, rawtimeBox)
+            if rawTime == 3:
+                pygame.draw.rect(window, fpsY, rawtimeBox)
+            if rawTime == 2:
+                pygame.draw.rect(window, fpsL, rawtimeBox)
+            if rawTime == 1:
+                pygame.draw.rect(window, fpsG, rawtimeBox)
+            window.blit(update_fps(), ((wx - 80),(wy - 31)))
+            window.blit(update_rawtime(), ((wx - 69),(wy - 56)))
 
     pygame.display.flip()
