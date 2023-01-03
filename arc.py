@@ -30,7 +30,7 @@ if gamePreRender == 1:
     logoH = pygame.transform.scale(logoH, (500, 500))
 
     randomBG = random.choice(os.listdir("songs"))
-    homeBG = pygame.image.load("songs/"+ randomBG+"/background.png")
+    homeBG = pygame.image.load("songs/"+ randomBG+"/background.png").convert()
     homeBG = pygame.transform.scale(homeBG, (wx, wy))
 
     uNameButton = pygame.Rect(63, 5, 200, 24)
@@ -56,9 +56,6 @@ if gamePreRender == 1:
     stringRand = 7
     res = ''.join(random.choices(string.ascii_uppercase + string.digits, k=stringRand))
     print("Session ID: " + str(res))
-
-    print(randomBG)
-    flashBG = 1
 
     clientLogged = 0
 
@@ -238,11 +235,7 @@ while True:
     
     if gameRender == 1:
         #Render order is first at the bottom, last is at the top
-
-        if flashBG == 1: #stops using all the fps
-            window.blit(homeBG, (0,0))
-            time.sleep(0.0000001)
-            flashBG = 0
+        window.blit(homeBG, (0,0))
 
         window.blit(logoH, (((wx/2)-250), ((wy/2)-250)))
         bar = (124, 124, 124)
