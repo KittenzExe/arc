@@ -59,6 +59,8 @@ if gamePreRender == 1:
 
     clientLogged = 0
 
+    menuListing = 1
+
     gameRender = 1
 
 fpsON = 1
@@ -235,15 +237,21 @@ while True:
     
     if gameRender == 1:
         #Render order is first at the bottom, last is at the top
-        window.blit(homeBG, (0,0))
+        if menu == 0:
+            window.blit(homeBG, (0,0))
 
-        window.blit(logoH, (((wx/2)-250), ((wy/2)-250)))
-        bar = (124, 124, 124)
-        bar1 = pygame.Rect(0, 0, wx, 70)
-        pygame.draw.rect(window, bar, bar1)
+            window.blit(logoH, (((wx/2)-250), ((wy/2)-250)))
+            bar = (124, 124, 124)
+            bar1 = pygame.Rect(0, 0, wx, 70)
+            pygame.draw.rect(window, bar, bar1)
 
         if menu == 1:
             window.fill((240,240,240))
+
+            if menuListing == 1:
+                dir = os.listdir("songs")
+                print(dir)
+                menuListing = 0
 
         if login == 1:
             if loginShow == True:
