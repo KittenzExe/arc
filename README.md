@@ -9,7 +9,7 @@ Developed by KittenzExe
 # Information (Please read)
 If you try and download it now, it wont work. Firebase data is localy stored and not shared at the moment. (aka, its on my desktop for security reasons)
 
-Very **very** work in progress
+Very **very** work in progress. I will be regularly updating the game over some time but also working on other projects. (I'll try and keep this from going to the graveyard)
 
 (Contact me at: contact.arc@kittenzexe.com)
 
