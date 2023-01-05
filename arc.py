@@ -232,9 +232,6 @@ while True:
             else:
                 print(u'Not a valid username or password')
     
-    if menu == 1:
-        window.fill((240,240,240))
-    
     if gameRender == 1:
         #Render order is first at the bottom, last is at the top
         if menu == 0:
