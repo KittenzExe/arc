@@ -14,9 +14,10 @@ Very **very** work in progress. I will be regularly updating the game over some 
 (Contact me at: contact.arc@kittenzexe.com)
 
 # Versions:
-- Release: V0.1.1
-- Spindal: V0.2.6
-- (Currently Matching)
+- Release: V0.1.2
+- Spindal: V0.2.9
+- Mapper: V0.1.0 (Currently Spindal Only)
+- (Spindal Ahead)
 
 # Frequently Asked Questions:
 ## Soon tm
@@ -27,8 +28,8 @@ Required installs for editing:
 pip install pygame
 pip install system
 pip install pypresence
-pip install time
 pip install firebase
+pip install firebase_admin
 pip install auto-py-to-exe (for compiling)
 ```
 
