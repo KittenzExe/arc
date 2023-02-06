@@ -17,7 +17,7 @@ mainClock = pygame.time.Clock()
 clientClock = pygame.time.Clock()
 pygame.init()
 
-cred = credentials.Certificate("/Users/KittenzExe/Desktop/arc-data-base-firebase-adminsdk-1vqh2-fc3c1d97fb.json")
+cred = credentials.Certificate("/Users/Kitki/Desktop/arc-data-base-firebase-adminsdk-1vqh2-4d503f6ef2.json")
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -183,11 +183,11 @@ while True:
                 logOnP = True
                 if event.key == pygame.K_BACKSPACE:
                     text_value_P = text_value_P[:-1]
-                    text_P = font.render(text_value_P, True, (0, 0, 0))
+                    text_P = font.render(text_value_P_hidden, True, (0, 0, 0))
             if event.type == pygame.TEXTINPUT:
                 text_value_P += event.text
                 text_value_P_hidden += "*"
-                text_P = font.render(text_value_P, True, (0, 0, 0))
+                text_P = font.render(text_value_P_hidden, True, (0, 0, 0))
         
         if dSubmit == True:
             #Username Handler
