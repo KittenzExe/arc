@@ -23,7 +23,7 @@ db = firestore.client()
 
 gamePreRender = 1
 if gamePreRender == 1:
-    window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)#, pygame.FULLSCREEN | or in 1080, 720
+    window = pygame.display.set_mode((1080,720))#, pygame.FULLSCREEN | or in 1080, 720
     wx,wy = pygame.display.get_window_size()
 
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
@@ -43,7 +43,8 @@ if gamePreRender == 1:
     text_value_U = ""
     text_U = font.render(text_value_U, True, (100, 100, 255))
     text_value_P = ""
-    text_P = font.render(text_value_P, True, (100, 100, 255))
+    text_value_P_hidden = ""
+    text_P = font.render(text_value_P_hidden, True, (100, 100, 255))
     userTemp = "Username"
     passwordTemp = "Password"
     tempU = font.render(userTemp, True, (0, 0, 0))
@@ -185,6 +186,7 @@ while True:
                     text_P = font.render(text_value_P, True, (0, 0, 0))
             if event.type == pygame.TEXTINPUT:
                 text_value_P += event.text
+                text_value_P_hidden += "*"
                 text_P = font.render(text_value_P, True, (0, 0, 0))
         
         if dSubmit == True:
