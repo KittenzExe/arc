@@ -19,7 +19,7 @@ logoH = pygame.transform.scale(logoH, (100, 100))
 songFileLoadButton = pygame.Rect(63, 5, 200, 24)
 text_value_SFL = ""
 text_SFL = font.render(text_value_SFL, True, (100, 100, 255))
-helperText1 = "map folder name"
+helperText1 = "map folder location and name"
 helperText1Out = font.render(helperText1, True, (100, 100, 255))
 
 fileLoadScreen = 1
@@ -54,7 +54,7 @@ while True:
                 text_SFL = font.render(text_value_SFL, True, (0, 0, 0))
 
     if fileLoadScreen == True:
-        songFileLoadButton = pygame.Rect(63, 5, 200, 24)
+        songFileLoadButton = pygame.Rect(63, 5, 400, 24)
         pygame.draw.rect(window, [155, 224, 241], songFileLoadButton)
         window.blit(text_SFL, (68, 5))
         window.blit(helperText1Out, (68, 25))
