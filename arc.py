@@ -2,6 +2,7 @@ import pygame
 import sys
 from pypresence import Presence
 import time
+import json
 from pygame.locals import *
 from datetime import datetime
 import os
@@ -21,9 +22,20 @@ cred = credentials.Certificate("/Users/Kitki/Desktop/arc-data-base-firebase-admi
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+c = open('config.json')
+cfig = json.load(c)
+
 gamePreRender = 1
 if gamePreRender == 1:
-    window = pygame.display.set_mode((1080,720))#, pygame.FULLSCREEN | or in 1080, 720
+    display = cfig['display']
+    display_x = display['x']
+    display_y = display['y']
+    display_f = display['is-fullscreen?']
+    if display_f == 1:
+        window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+    else:
+        window = pygame.display.set_mode((display_x,display_y))
+    
     wx,wy = pygame.display.get_window_size()
 
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()

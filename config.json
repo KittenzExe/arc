@@ -1,0 +1,11 @@
+{
+    "debug_mode": {
+      "active": 1
+    },
+    "display": {
+      "x": 1080,
+      "y": 720,
+      "is-fullscreen?": 0
+    }
+  }
+  
