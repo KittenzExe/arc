@@ -23,7 +23,7 @@ db = firestore.client()
 
 gamePreRender = 1
 if gamePreRender == 1:
-    window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)#, pygame.FULLSCREEN | or in 1080, 720
+    window = pygame.display.set_mode((1080,720))#, pygame.FULLSCREEN | or in 1080, 720
     wx,wy = pygame.display.get_window_size()
 
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
@@ -244,11 +244,6 @@ while True:
 
         if menu == 1:
             window.fill((240,240,240))
-
-            if menuListing == 1:
-                dir = os.listdir("songs")
-                print(dir)
-                menuListing = 0
 
         if login == 1:
             if loginShow == True:
