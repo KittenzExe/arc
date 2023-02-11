@@ -2,6 +2,7 @@ import pygame
 import sys
 from pypresence import Presence
 import time
+import json
 from pygame.locals import *
 from datetime import datetime
 import os
@@ -17,13 +18,24 @@ mainClock = pygame.time.Clock()
 clientClock = pygame.time.Clock()
 pygame.init()
 
-cred = credentials.Certificate("/Users/KittenzExe/Desktop/arc-data-base-firebase-adminsdk-1vqh2-fc3c1d97fb.json")
+cred = credentials.Certificate("/Users/Kitki/Desktop/arc-data-base-firebase-adminsdk-1vqh2-4d503f6ef2.json")
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+c = open('config.json')
+cfig = json.load(c)
+
 gamePreRender = 1
 if gamePreRender == 1:
-    window = pygame.display.set_mode((1080,720))#, pygame.FULLSCREEN | or in 1080, 720
+    display = cfig['display']
+    display_x = display['x']
+    display_y = display['y']
+    display_f = display['is-fullscreen?']
+    if display_f == 1:
+        window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+    else:
+        window = pygame.display.set_mode((display_x,display_y))
+    
     wx,wy = pygame.display.get_window_size()
 
     logoH = pygame.image.load("resources/arc-logo-updated.png").convert_alpha()
@@ -43,7 +55,8 @@ if gamePreRender == 1:
     text_value_U = ""
     text_U = font.render(text_value_U, True, (100, 100, 255))
     text_value_P = ""
-    text_P = font.render(text_value_P, True, (100, 100, 255))
+    text_value_P_hidden = ""
+    text_P = font.render(text_value_P_hidden, True, (100, 100, 255))
     userTemp = "Username"
     passwordTemp = "Password"
     tempU = font.render(userTemp, True, (0, 0, 0))
@@ -182,10 +195,11 @@ while True:
                 logOnP = True
                 if event.key == pygame.K_BACKSPACE:
                     text_value_P = text_value_P[:-1]
-                    text_P = font.render(text_value_P, True, (0, 0, 0))
+                    text_P = font.render(text_value_P_hidden, True, (0, 0, 0))
             if event.type == pygame.TEXTINPUT:
                 text_value_P += event.text
-                text_P = font.render(text_value_P, True, (0, 0, 0))
+                text_value_P_hidden += "*"
+                text_P = font.render(text_value_P_hidden, True, (0, 0, 0))
         
         if dSubmit == True:
             #Username Handler
