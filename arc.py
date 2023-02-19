@@ -294,15 +294,15 @@ while True:
             fpsG = (0,255,0)
             fpsBox = pygame.Rect((wx - 85) , (wy - 30), 100, 25)
             rawtimeBox = pygame.Rect((wx - 70) , (wy - 56), 100, 23)
-            if newFPS >= 15:
+            if newFPS >= (fps_limit / 6):
                 pygame.draw.rect(window, fpsR, fpsBox)
-            if newFPS >= 30:
+            if newFPS >= (fps_limit / 5):
                 pygame.draw.rect(window, fpsO, fpsBox)
-            if newFPS >= 60:
+            if newFPS >= (fps_limit / 4):
                 pygame.draw.rect(window, fpsY, fpsBox)
-            if newFPS >= 120:
+            if newFPS >= (fps_limit / 3):
                 pygame.draw.rect(window, fpsL, fpsBox)
-            if newFPS >= 180:
+            if newFPS >= (fps_limit / 2):
                 pygame.draw.rect(window, fpsG, fpsBox)
             if rawTime <= 5:
                 pygame.draw.rect(window, fpsR, rawtimeBox)
