@@ -7,8 +7,7 @@
 Developed by KittenzExe
 
 <p align="center">
-  <img src="https://wakatime.com/badge/user/5fe734af-2708-4102-825d-758345a89313/project/1e94e1c5-d427-47c7-8b78-dce669cd730b.svg">
-  <img src="https://img.shields.io/github/commit-activity/w/kittenzexe/arc">
+  <img src="https://wakatime.com/badge/user/5fe734af-2708-4102-825d-758345a89313/project/981a17c5-5595-4b28-9196-213220b7182a.svg">
   <img src="https://img.shields.io/github/license/kittenzexe/arc">
 </p>
 
