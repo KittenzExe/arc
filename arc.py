@@ -18,7 +18,7 @@ mainClock = pygame.time.Clock()
 clientClock = pygame.time.Clock()
 pygame.init()
 
-cred = credentials.Certificate("/Users/Kitki/Desktop/arc-data-base-firebase-adminsdk-1vqh2-4d503f6ef2.json")
+cred = credentials.Certificate("C:/arc-data-base-firebase-adminsdk-1vqh2-fc3c1d97fb.json")
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -31,6 +31,7 @@ if gamePreRender == 1:
     display_x = display['x']
     display_y = display['y']
     display_f = display['is-fullscreen?']
+    fps_limit = display['fps']
     if display_f == 1:
         window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
     else:
@@ -107,7 +108,7 @@ uPP = ''
 
 #main loop starts here
 while True:
-    mainClock.tick(999) #fps cap
+    mainClock.tick(fps_limit) #fps cap
     
     for event in pygame.event.get():
         if event.type == QUIT:
