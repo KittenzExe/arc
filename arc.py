@@ -263,6 +263,9 @@ while True:
 
         if menu == 1:
             window.fill((240,240,240))
+            song_list = str(os.listdir('songs'))
+            song_listing = font.render(song_list, True, (0, 0, 0))
+            window.blit(song_listing, (10, 100))
 
         if login == 1:
             if loginShow == True:
