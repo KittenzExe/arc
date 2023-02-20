@@ -196,6 +196,7 @@ while True:
                 logOnP = True
                 if event.key == pygame.K_BACKSPACE:
                     text_value_P = text_value_P[:-1]
+                    text_value_P_hidden = text_value_P_hidden[:-1]
                     text_P = font.render(text_value_P_hidden, True, (0, 0, 0))
             if event.type == pygame.TEXTINPUT:
                 text_value_P += event.text
@@ -232,6 +233,7 @@ while True:
                     }, merge=True)
                     else:
                         print("verification failed. please restart")
+                        break
                     
                     uName = str(doc1.to_dict()['3-uName'])
                     uScore = str(doc1.to_dict()['5-score'])
@@ -244,8 +246,10 @@ while True:
                     dSubmit = False
                 else:
                     print(u'Not a valid username or password')
+                    break
             else:
                 print(u'Not a valid username or password')
+                break
     
     if gameRender == 1:
         #Render order is first at the bottom, last is at the top
