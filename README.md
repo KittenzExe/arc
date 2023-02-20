@@ -29,7 +29,8 @@ Very **very** work in progress. I will be regularly updating the game over some 
 # Frequently Asked Questions:
 ## Soon tm
 
-# Pre-requisites for editing:
+# Editing and contribution
+## Pre-requisites for editing:
 Required installs for editing:
 ```
 pip install pygame
@@ -46,6 +47,8 @@ Run the following:
 ```
 python -m auto_py_to_exe
 ```
+## Permission for running
+Please contract me for firebase .json file (Localy stored for security reasons)
 
 README.md created on 14th of December 2022
 
