@@ -50,6 +50,8 @@ python -m auto_py_to_exe
 ## Permission for running
 Please contract me for firebase .json file (Localy stored for security reasons)
 
+
+## Details
 README.md created on 14th of December 2022
 
 Project Started 10th of December 2022
