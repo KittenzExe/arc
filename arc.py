@@ -90,7 +90,6 @@ def update_rawtime():
 
 files = folders = 0
 for _, dirnames, filenames in os.walk('songs'):
-  # ^ this idiom means "we won't be using this value"
     files += len(filenames)
     folders += len(dirnames)
 print ("{:,} files, {:,} folders".format(files, folders))
@@ -108,7 +107,7 @@ uPP = ''
 
 #main loop starts here
 while True:
-    mainClock.tick(fps_limit) #fps cap
+    mainClock.tick(fps_limit)
     
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -154,29 +153,25 @@ while True:
                 menu = 0
                 flashBG = 1
         if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = event.pos  # gets mouse position
+                mouse_pos = event.pos
                 if uNameButton.collidepoint(mouse_pos):
-                    # prints current location of mouse
                     print('button was pressed at {0}'.format(mouse_pos))
                     tInputU = True
                     tInputP = False
                     dSubmit = False
                     uT = False
                 if pWordButton.collidepoint(mouse_pos):
-                    # prints current location of mouse
                     print('button2 was pressed at {0}'.format(mouse_pos))
                     tInputU = False
                     tInputP = True
                     dSubmit = False
                     pT = False
                 if dSubmitButton.collidepoint(mouse_pos):
-                    # prints current location of mouse
                     print('button3 was pressed at {0}'.format(mouse_pos))
                     tInputU = False
                     tInputP = False
                     dSubmit = True
                 if logoButton.collidepoint(mouse_pos):
-                    # prints current location of mouse
                     print('logo was pressed at {0}'.format(mouse_pos))
                     menu = 1
                     login = 0
@@ -242,7 +237,6 @@ while True:
 
                     clientLogged = 1
 
-                    #Finish submit loop
                     dSubmit = False
                 else:
                     print(u'Not a valid username or password')
@@ -252,7 +246,7 @@ while True:
                 break
     
     if gameRender == 1:
-        #Render order is first at the bottom, last is at the top
+        #Render order is stacked ontop
         if menu == 0:
             window.blit(homeBG, (0,0))
 
@@ -271,10 +265,8 @@ while True:
             if loginShow == True:
                 pygame.draw.rect(window, [240, 240, 240], uNameButton)
                 window.blit(text_U, (68, 5))
-
                 pygame.draw.rect(window, [240, 240, 240], pWordButton)
                 window.blit(text_P, (68, 34))
-
                 pygame.draw.rect(window, [240, 240, 240], dSubmitButton)
 
                 if uT == True:
