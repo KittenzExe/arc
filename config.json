@@ -5,7 +5,7 @@
     "display": {
       "x": 1080,
       "y": 720,
-      "is-fullscreen?": 1,
+      "is-fullscreen?": 0,
       "fps": 1000
     }
   }

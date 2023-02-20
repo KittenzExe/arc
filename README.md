@@ -20,10 +20,6 @@ If you try and download it now, it wont work. Firebase data is localy stored and
 
 Very **very** work in progress. I will be regularly updating the game over some time but also working on other projects. (I'll try and keep this from going to the graveyard)
 
-(6/2/23: back public again after a break)
-
-(Contact me at: contact.arc@kittenzexe.com)
-
 # Versions:
 - Release: V0.1.2
 - Spindal: V0.2.9
@@ -42,6 +38,7 @@ pip install pypresence
 pip install firebase
 pip install firebase_admin
 pip install auto-py-to-exe (for compiling)
+pip install datetime
 ```
 
 ## For converting to exe
