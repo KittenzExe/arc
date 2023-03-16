@@ -46,6 +46,7 @@ while True:
                 # prints current location of mouse
                 print('button was pressed at {0}'.format(mouse_pos))
                 fileLoadScreenEnter = True
+
         if fileLoadScreen == True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:

@@ -18,11 +18,14 @@ cfig = json.load(c)
 
 gamePreRender = 1
 if gamePreRender == 1:
+    debug = cfig['debug_mode']
+    debugMode = debug['active']
     display = cfig['display']
     display_x = display['x']
     display_y = display['y']
     display_f = display['is-fullscreen?']
     fps_limit = display['fps']
+
     if display_f == 1:
         window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
     else:
@@ -46,8 +49,6 @@ if gamePreRender == 1:
     player = pygame.Rect(player_pos.xy, (2,2))
     player_center = pygame.Vector2(player.center)
     looking_vector = pygame.Vector2(1,1)
-
-debugLine = 1
 
 fpsON = 1
 def update_fps():
@@ -148,7 +149,7 @@ while True:
             window.blit(update_fps(), ((wx - 80),(wy - 31)))
             window.blit(update_rawtime(), ((wx - 69),(wy - 56)))
 
-        if debugLine == 1:
+        if debugMode == 1:
             pygame.draw.line(window, (255,50,50), player_center, pygame.mouse.get_pos())
 
     pygame.display.flip()

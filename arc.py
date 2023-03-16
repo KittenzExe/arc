@@ -27,11 +27,14 @@ cfig = json.load(c)
 
 gamePreRender = 1
 if gamePreRender == 1:
+    debug = cfig['debug_mode']
+    debugMode = debug['active']
     display = cfig['display']
     display_x = display['x']
     display_y = display['y']
     display_f = display['is-fullscreen?']
     fps_limit = display['fps']
+
     if display_f == 1:
         window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
     else:
@@ -175,6 +178,9 @@ while True:
                     print('logo was pressed at {0}'.format(mouse_pos))
                     menu = 1
                     login = 0
+        if event.type == KEYDOWN:
+            if event.key == K_m:
+                exec(open('mapper.py').read())
 
         if tInputU == True:
             if event.type == pygame.KEYDOWN:
