@@ -319,6 +319,8 @@ while True:
                 pygame.draw.rect(window, fpsL, rawtimeBox)
             if rawTime == 1:
                 pygame.draw.rect(window, fpsG, rawtimeBox)
+            if rawTime <= 1:
+                pygame.draw.rect(window, fpsG, rawtimeBox)
             window.blit(update_fps(), ((wx - 80),(wy - 31)))
             window.blit(update_rawtime(), ((wx - 69),(wy - 56)))
 
