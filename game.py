@@ -47,6 +47,8 @@ if gamePreRender == 1:
     player_center = pygame.Vector2(player.center)
     looking_vector = pygame.Vector2(1,1)
 
+debugLine = 1
+
 fpsON = 1
 def update_fps():
 	fps = str(int(mainClock.get_fps()))
@@ -112,8 +114,6 @@ while True:
 
         window.blit(circle, (((wx/2)-((display_y*0.9)/2)), ((wy/2)-((display_y*0.9)/2))))
         blitRotate(window, paddle, ((wx/2),(wy/2)), (w/2, h/2), degs)
-
-        pygame.draw.line(window, (255,50,50), player_center, pygame.mouse.get_pos())
             
         if fpsON == 1:
             newFPS = int(mainClock.get_fps())
@@ -147,5 +147,8 @@ while True:
                 pygame.draw.rect(window, fpsG, rawtimeBox)
             window.blit(update_fps(), ((wx - 80),(wy - 31)))
             window.blit(update_rawtime(), ((wx - 69),(wy - 56)))
+
+        if debugLine == 1:
+            pygame.draw.line(window, (255,50,50), player_center, pygame.mouse.get_pos())
 
     pygame.display.flip()
