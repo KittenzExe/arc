@@ -39,6 +39,13 @@ if gamePreRender == 1:
     paddle = pygame.image.load("resources/skin/paddle-fixed.png").convert_alpha()
     paddle = pygame.transform.scale(paddle, ((display_y*0.9), (display_y*0.9)))
 
+    clicker0 = pygame.image.load("resources/skin/clicker0.png").convert_alpha()
+    clicker1 = pygame.image.load("resources/skin/clicker1.png").convert_alpha()
+    clicker2 = pygame.image.load("resources/skin/clicker2.png").convert_alpha()
+    clicker0 = pygame.transform.scale(clicker0, (133, 89))
+    clicker1 = pygame.transform.scale(clicker1, (133, 89))
+    clicker2 = pygame.transform.scale(clicker2, (133, 89))
+
     font = pygame.font.SysFont("arialrounded", 20)#, bold = pygame.font.Font.bold
 
     menuListing = 1
@@ -85,6 +92,8 @@ print ("{:,} files, {:,} folders".format(files, folders))
 
 w, h = paddle.get_size()
 
+click = 0
+
 #main loop starts here
 while True:
     mainClock.tick(fps_limit)
@@ -97,6 +106,12 @@ while True:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
+        if event.type == KEYDOWN:
+            if event.key == K_z:
+                click = 1
+        if event.type == KEYDOWN:
+            if event.key == K_x:
+                click = 2
 
     mouse_pos = pygame.mouse.get_pos()
     delta = mouse_pos - player_center
@@ -118,6 +133,13 @@ while True:
 
         window.blit(circle, (((wx/2)-((display_y*0.9)/2)), ((wy/2)-((display_y*0.9)/2))))
         blitRotate(window, paddle, ((wx/2),(wy/2)), (w/2, h/2), degs)
+
+        if click == 1:
+           window.blit(clicker1, (0, wy-100)) 
+        if click == 2:
+           window.blit(clicker2, (0, wy-100)) 
+        if click == 0:
+           window.blit(clicker0, (0, wy-100)) 
             
         if fpsON == 1:
             newFPS = int(mainClock.get_fps())
