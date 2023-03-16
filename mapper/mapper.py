@@ -39,9 +39,12 @@ fps_limit = display['fps']
 
 fpsON = 1
 def update_fps():
-	fps = str(int(mainClock.get_fps()))
-	fps_text = font.render(fps + " fps", 1, pygame.Color(0,0,0))
-	return fps_text
+    fps = int(mainClock.get_fps())
+    roundfps = (fps /10)
+    roundedfps = str(round(roundfps))+"0"   
+    fps_text = font.render(roundedfps + " fps", 1, pygame.Color(0,0,0))
+    return fps_text
+
 rawTimeON = 1
 def update_rawtime():
     rawtime = str(int(mainClock.get_rawtime()))
