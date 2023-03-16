@@ -33,10 +33,10 @@ if gamePreRender == 1:
     
     wx,wy = pygame.display.get_window_size()
 
-    circle = pygame.image.load("game-assets/circle.png").convert_alpha()
+    circle = pygame.image.load("resources/skin/circle.png").convert_alpha()
     circle = pygame.transform.scale(circle, ((display_y*0.9), (display_y*0.9)))
 
-    paddle = pygame.image.load("game-assets/paddle-fixed.png").convert_alpha()
+    paddle = pygame.image.load("resources/skin/paddle-fixed.png").convert_alpha()
     paddle = pygame.transform.scale(paddle, ((display_y*0.9), (display_y*0.9)))
 
     font = pygame.font.SysFont("arialrounded", 20)#, bold = pygame.font.Font.bold
