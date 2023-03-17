@@ -1,7 +1,7 @@
 {
     "debug_mode": {
       "active": 1,
-      "fps": 0
+      "fps": 1
     },
     "display": {
       "x": 1080,
