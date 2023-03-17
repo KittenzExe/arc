@@ -34,18 +34,19 @@ cfig = json.load(c)
 
 debug = cfig['debug_mode']
 debugMode = debug['active']
+fps = debug['fps']
 display = cfig['display']
+display_x = display['x']
+display_y = display['y']
+display_f = display['is-fullscreen?']
 fps_limit = display['fps']
 
-fpsON = 1
 def update_fps():
     fps = int(mainClock.get_fps())
     roundfps = (fps /10)
     roundedfps = str(round(roundfps))+"0"   
     fps_text = font.render(roundedfps + " fps", 1, pygame.Color(0,0,0))
     return fps_text
-
-rawTimeON = 1
 def update_rawtime():
     rawtime = str(int(mainClock.get_rawtime()))
     rawtime_text = font.render(rawtime + " ms", 1, pygame.Color(0,0,0))
@@ -91,7 +92,7 @@ while True:
         window.blit(text_info_print, (69, 100))
         window.blit(helperText1Out, (68, 25))
     
-    if fpsON == 1:
+    if fps == 1:
         newFPS = int(mainClock.get_fps())
         rawTime = int(mainClock.get_rawtime())
         fpsR = (255,0,0)

@@ -29,6 +29,7 @@ gamePreRender = 1
 if gamePreRender == 1:
     debug = cfig['debug_mode']
     debugMode = debug['active']
+    fps = debug['fps']
     display = cfig['display']
     display_x = display['x']
     display_y = display['y']
@@ -80,15 +81,12 @@ if gamePreRender == 1:
 
     gameRender = 1
 
-fpsON = 1
 def update_fps():
     fps = int(mainClock.get_fps())
     roundfps = (fps /10)
     roundedfps = str(round(roundfps))+"0"   
     fps_text = font.render(roundedfps + " fps", 1, pygame.Color(0,0,0))
     return fps_text
-
-rawTimeON = 1
 def update_rawtime():
     rawtime = str(int(mainClock.get_rawtime()))
     rawtime_text = font.render(rawtime + " ms", 1, pygame.Color(0,0,0))
@@ -292,7 +290,7 @@ while True:
             window.blit(uScorePrint, (5, 25))
             window.blit(uPPPrint, (5, 45))
             
-        if fpsON == 1:
+        if fps == 1:
             newFPS = int(mainClock.get_fps())
             rawTime = int(mainClock.get_rawtime())
             fpsR = (255,0,0)
