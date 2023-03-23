@@ -129,6 +129,9 @@ while True:
         #Render order is stacked ontop
         window.fill((255,255,255))
 
+        fpsCheckBox = pygame.Rect(10 , 10, 25, 25)
+        pygame.draw.rect(window, (255,255,255), fpsCheckBox)
+
         window.blit(circle, (((wx/2)-((display_y*0.9)/2)), ((wy/2)-((display_y*0.9)/2))))
         blitRotate(window, paddle, ((wx/2),(wy/2)), (w/2, h/2), degs)
 
@@ -174,5 +177,8 @@ while True:
 
         if debugMode == 1:
             pygame.draw.line(window, (255,50,50), player_center, pygame.mouse.get_pos())
+
+        fpsCheckBox2 = pygame.Rect(10 , 10, 25, 25)
+        pygame.draw.rect(window, (0,255,0), fpsCheckBox2)
 
     pygame.display.flip()

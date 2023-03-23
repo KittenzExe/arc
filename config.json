@@ -4,9 +4,9 @@
       "fps": 1
     },
     "display": {
-      "x": 1080,
-      "y": 720,
-      "is-fullscreen?": 0,
+      "x": 1920,
+      "y": 1080,
+      "is-fullscreen?": 1,
       "fps": 500
     }
   }
